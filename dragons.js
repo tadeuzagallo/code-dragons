@@ -4,6 +4,7 @@ var CodeMaintenance = (function() {
     CodeMaintenance = function() {
         this.warriors = [];
         this.dragons = [];
+    this.expectators = [];
     };
 
     CodeMaintenance.prototype.addWarrior = function(warrior) {
@@ -18,17 +19,36 @@ var CodeMaintenance = (function() {
         return this;
     };
 
+    CodeMaintenance.prototype.addExpectator = function(expectator) {
+        this.expectators.push(expectator);
+
+        return this;
+    };
+
     CodeMaintenance.prototype.fight = function(rounds) {
         try {
-            if ((this.warriors.length > 0) && (this.dragons.length > 0)) {
+            if ((this.warriors.length > 0) && (this.dragons.length > 0) \
+            && (this.expectators.length > 0)) {
                 for (var index = 0; index < rounds; index++) {
                     var warrior = this.warriors[Math.floor(Math.random() * this.warriors.length)];
                     var dragon = this.dragons[Math.floor(Math.random() * this.dragons.length)];
+                    var expectator = this.expectators[Math.floor(Math.random() * this.expectators.length)];
 
                     if (!!Math.round(Math.random() * 1)) {
                         console.log(warrior + ' fought ' + dragon + ' and won!');
+                        if (!!Math.round(Math.random() * 1)) {
+                            console.log(expectator + ' applauded!');
+                        } else {
+                            console.log(expectator + ' thinks ' + warrior + ' cheated. Bad fight.');
+                        }
+
                     } else {
                         console.log(warrior + ' fought ' + dragon + ' and lost.');
+                        if (!!Math.round(Math.random() * 1)) {
+                            console.log(expectator + ' took the burnt remains home for a barbecue. :)');
+                        } else {
+                            console.log(expectator + ' mourned the passing of ' + warrior);
+                        }
                     }
                 }
             } else {
@@ -84,4 +104,5 @@ codeMaintenance.addWarrior('Jorge Roberto')
                .addDragon('Drogon')
                .addDragon('Rhaegal')
                .addDragon('Viserion')
+               .addExpectator('Patola')
                .fight(50);
