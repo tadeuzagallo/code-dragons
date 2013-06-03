@@ -1,0 +1,1 @@
+It's just a joke between me and my friends while doing some code maintenance. Don't take too serious... but hey, the code is pretty awesome ;)
